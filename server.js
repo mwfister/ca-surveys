@@ -14,11 +14,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api', api)
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(buildPath, 'index.html'))
-// })
-
 app.listen(port, () => {
-  console.log(chalk.red(path.join(buildPath, 'index.html')));
   console.log(`Listening at 'http://localhost:${chalk.bold.green(port)}/.`)
 })

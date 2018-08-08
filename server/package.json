@@ -1,0 +1,25 @@
+{
+  "name": "survey-server",
+  "version": "0.1.0",
+  "description": "server providing survey data",
+  "main": "index.js",
+  "engines": {
+    "node": "10.8.0",
+    "npm": "6.2.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "node client.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marc Fister",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "2.4.1",
+    "express": "4.16.3"
+  },
+  "devDependencies": {
+    "concurrently": "3.6.1"
+  }
+}

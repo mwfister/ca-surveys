@@ -4,7 +4,7 @@ This repository contains a small number of static JSON files, which represent th
 
 Your task is to build a web front end that displays the data supplied by this API. You must process the survey data and display the results in a clear, usable interface.
 
-## state mockup
+## State Mockup
 
 state = {
   surveys: {
@@ -27,13 +27,18 @@ state = {
     [question_id]: {
       description,
       question_type,
-      survey_responses: {
-        [response_id]: {
-          response_content,
-        }
-      }
+      survey_responses: [
+        response_id,
+      ]
     }
   },
+  responses: {
+    [response_id]: {
+      question_id,
+      respondent_id,
+      response_content,
+    }
+  }
   respondents: {
     [respondent_id]: {
       responses: [
@@ -42,6 +47,7 @@ state = {
     }
   }
 }
+
 ## Getting Started
 
 We suggest you start by setting up an HTTP server that will serve up these JSON files upon request. This may be the same server that serves your web application to consume the API, but make sure to design your application in such a way that you could easily point it to an arbitrary base URL for the API, somewhere else on the Internet.

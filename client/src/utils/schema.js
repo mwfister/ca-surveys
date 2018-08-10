@@ -1,4 +1,5 @@
 import { schema } from 'normalizr'
+import { nameToKey } from './helpers'
 
 // Establish the shape of the normalised/flattened state
 
@@ -15,12 +16,14 @@ const questionSchema = new schema.Entity('questions', {
 const themeSchema = new schema.Entity('themes', {
   questions: questionSchema
 }, {
+  idAttribute: (value) => nameToKey(value)
 })
 const themeListSchema = new schema.Array(themeSchema)
 
 const survey = new schema.Entity('surveys', {
   themes: themeListSchema
 }, {
+  idAttribute: (value) => nameToKey(value)
 })
 
 export default survey

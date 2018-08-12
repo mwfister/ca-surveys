@@ -11,12 +11,11 @@ class App extends Component {
       .then((response) => response.json())
       .then(log('API response in JSON'))
       .then(({ survey_result_detail: survey }) => {
-        console.log("data", survey );
         const normalisedState = normalize(survey, surveysSchema)
 
         console.group("State")
+        console.log("data", survey );
         console.log("Normalised state", normalisedState);
-        console.log(JSON.stringify(normalisedState));
         console.groupEnd()
         return normalisedState
       })

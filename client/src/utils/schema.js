@@ -1,20 +1,20 @@
 import { schema } from 'normalizr'
 import { nameToKey } from './helpers'
 
-// Establish the shape of the normalised/flattened state
-
+// Establishes the shape of the normalised/flattened state
 const responseSchema = new schema.Entity('responses')
+const responseListSchema = new schema.Array(responseSchema)
 
-// TODO: Reference question ID correctly
 const questionSchema = new schema.Entity('questions', {
-  survey_responses: responseSchema
+  survey_responses: responseListSchema
 }, {
-  idAttribute: (value, parent, key) => (console.log("value", value), value.question_id),
-  processStrategy: (value) => ({ ...value, id: value.question_id })
+  idAttribute: (value) => value.survey_responses[0].question_id,
+  processStrategy: (value) => ({ ...value, id: value.survey_responses[0].question_id })
 })
+const questionListSchema = new schema.Array(questionSchema)
 
 const themeSchema = new schema.Entity('themes', {
-  questions: questionSchema
+  questions: questionListSchema
 }, {
   idAttribute: (value) => nameToKey(value)
 })

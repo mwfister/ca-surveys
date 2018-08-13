@@ -41,13 +41,31 @@ export function fetchSurveysRequest() {
   }
 }
 
-export function fetchSurveysSuccess({ surveys, themes, questions, respondents }) {
+export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
+  const createRespondents = () => {
+    Object.keys(responses).reduce((respondents, key) => {
+      const { respondent_id, question_id } = responses[key]
+      const responseList = respondents[respondent_id].responses
+      console.log("responses[key]", responses[key])
+
+      return {
+        ...respondents,
+        [respondent_id]: {
+          responses: responseList
+            ? responseList.concat(question_id)
+            : [question_id]
+        }
+      }
+    }, {})
+  }
+
   return {
     type: FETCH_SURVEYS_SUCCESS,
     surveys,
     themes,
     questions,
-    respondents,
+    responses,
+    respondents: createRespondents(),
   }
 }
 

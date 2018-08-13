@@ -33,7 +33,7 @@ export function fetchSurveyListFailure(error) {
 
 const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEYS_REQUEST'
 const FETCH_SURVEYS_SUCCESS = 'FETCH_SURVEYS_SUCCESS'
-const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEYS_ERROR'
+const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEYS_FAILURE'
 
 export function fetchSurveysRequest() {
   return {

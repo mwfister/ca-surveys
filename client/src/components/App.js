@@ -3,21 +3,23 @@ import React, { Component } from 'react';
 import { normalize } from 'normalizr'
 import surveysSchema from '../utils/schema'
 import { log } from '../utils/helpers'
+import { fetchSurveysSuccess } from '../actions/surveys'
 
 class App extends Component {
 
   render() {
-    fetch('/api/survey_results/1.json')
+    fetch('/api/surveys')
       .then((response) => response.json())
       .then(log('API response in JSON'))
-      .then(({ survey_result_detail: survey }) => {
-        const normalisedState = normalize(survey, surveysSchema)
+      .then((results) => {
+        //const normalisedState = normalize(survey, surveysSchema)
 
         console.group("State")
-        console.log("data", survey );
-        console.log("Normalised state", normalisedState);
+        console.log("data", results );
+        console.log("spread res", ...results.survey_results);
+        //console.log("Normalised state", normalisedState);
         console.groupEnd()
-        return normalisedState
+        return results
       })
       .catch((e) => console.error("error", e))
 

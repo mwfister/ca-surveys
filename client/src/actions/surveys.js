@@ -28,7 +28,7 @@ export function fetchSurveyListFailure(error) {
   return {
     type: FETCH_SURVEY_LIST_FAILURE,
     error,
-  }  
+  }
 }
 
 const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEYS_REQUEST'
@@ -77,5 +77,11 @@ export function fetchSurveysFailure(error) {
 }
 
 export function handleInitialData() {
-
+  return (dispatch) => {
+    dispatch(FETCH_SURVEYS_REQUEST)
+    fetch('/api/surveys')
+      .then((response) => response.json())
+      .then((surveys) => console.log(fetchSurveyListSuccess))
+      .catch((error) => console.error(error))
+  }
 }

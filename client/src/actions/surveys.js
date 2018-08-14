@@ -52,17 +52,30 @@ export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
   }
 }
 
-  }
-}
-
 export function handleInitialData() {
   return (dispatch) => {
-    dispatch(fetchSurveyListRequest())
+    dispatch(fetchSurveysRequest())
     fetch('/api/surveys')
       .then((response) => response.json())
       .then((surveys) => dispatch(fetchSurveyListSuccess(surveys)))
       .catch((error) => {
-        dispatch(fetchSurveyListFailure(error))
+        dispatch(fetchSurveysFailure(error))
+        return console.error("Gotta catch 'em all", error)
+      })
+  }
+}
+
+export function loadPageData(route) {
+  return (dispatch) => {
+    dispatch(fetchSurveysRequest())
+    fetch(`/api/${route}`)
+      .then((response) => response.json())
+      .then(({ survey_result_detail }) => (
+        normalize(survey_result_detail, surveysSchema).entities)
+      )
+      .then((surveys) => dispatch(fetchSurveysSuccess(surveys)))
+      .catch((error) => {
+        dispatch(fetchSurveysFailure(error))
         return console.error("Gotta catch 'em all", error)
       })
   }

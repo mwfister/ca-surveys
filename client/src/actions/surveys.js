@@ -16,7 +16,7 @@ export function fetchSurveyListSuccess({ survey_results }) {
     surveys: survey_results.reduce((surveys, survey) => {
       return {
         ...surveys,
-        [nameToKey(survey.name)]: {
+        [nameToKey(survey)]: {
           ...survey
         }
       }

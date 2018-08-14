@@ -1,10 +1,8 @@
 import {
-  FETCH_SURVEY_LIST_REQUEST,
-  FETCH_SURVEY_LIST_SUCCESS,
-  FETCH_SURVEY_LIST_FAILURE,
   FETCH_SURVEYS_REQUEST,
-  FETCH_SURVEYS_SUCCESS,
   FETCH_SURVEYS_FAILURE,
+  FETCH_SURVEY_LIST_SUCCESS,
+  FETCH_SURVEYS_SUCCESS,
 } from '../actions/surveys'
 
 const initialState = {
@@ -19,12 +17,21 @@ const initialState = {
 
 export default function surveys(state = initialState, action) {
   switch (action.type) {
-    case FETCH_SURVEY_LIST_REQUEST:
+    case FETCH_SURVEYS_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       }
+    case FETCH_SURVEYS_FAILURE: {
+      const { error } = action
+
+      return {
+        ...state,
+        loading: false,
+        error,
+      }
+    }
     case FETCH_SURVEY_LIST_SUCCESS: {
       const { surveys } = action
 
@@ -34,20 +41,6 @@ export default function surveys(state = initialState, action) {
         loading: false,
       }
     }
-    case FETCH_SURVEY_LIST_FAILURE: {
-      const { error } = action
-
-      return {
-        ...state,
-        loading: false,
-        error,
-      }
-    }
-    case FETCH_SURVEYS_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      }
     case FETCH_SURVEYS_SUCCESS: {
       const {
         surveys,
@@ -65,15 +58,6 @@ export default function surveys(state = initialState, action) {
         responses,
         respondents,
         loading: false,
-      }
-    }
-    case FETCH_SURVEYS_FAILURE: {
-      const { error } = action
-
-      return {
-        ...state,
-        loading: false,
-        error,
       }
     }
     default:

@@ -1,13 +1,20 @@
 import { nameToKey } from '../utils/helpers'
 import { nameToKey, createRespondents } from '../utils/helpers'
 
-export const FETCH_SURVEY_LIST_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
+export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
+export const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEY_LIST_FAILURE'
 export const FETCH_SURVEY_LIST_SUCCESS = 'FETCH_SURVEY_LIST_SUCCESS'
-export const FETCH_SURVEY_LIST_FAILURE = 'FETCH_SURVEY_LIST_FAILURE'
 
-export function fetchSurveyListRequest() {
+export function fetchSurveysRequest() {
   return {
-    type: FETCH_SURVEY_LIST_REQUEST,
+    type: FETCH_SURVEYS_REQUEST,
+  }
+}
+
+export function fetchSurveysFailure(error) {
+  return {
+    type: FETCH_SURVEYS_FAILURE,
+    error,
   }
 }
 
@@ -25,22 +32,7 @@ export function fetchSurveyListSuccess({ survey_results }) {
   }
 }
 
-export function fetchSurveyListFailure(error) {
-  return {
-    type: FETCH_SURVEY_LIST_FAILURE,
-    error,
-  }
-}
-
-export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEYS_REQUEST'
 export const FETCH_SURVEYS_SUCCESS = 'FETCH_SURVEYS_SUCCESS'
-export const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEYS_FAILURE'
-
-export function fetchSurveysRequest() {
-  return {
-    type: FETCH_SURVEYS_REQUEST,
-  }
-}
 
 export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
   try {
@@ -58,10 +50,6 @@ export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
   }
 }
 
-export function fetchSurveysFailure(error) {
-  return {
-    type: FETCH_SURVEYS_FAILURE,
-    error,
   }
 }
 

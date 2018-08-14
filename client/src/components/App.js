@@ -8,6 +8,7 @@ import { handleInitialData } from '../actions/surveys'
 
 class App extends Component {
   componentDidMount() {
+    this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
+          <h2>{JSON.stringify(this.props.surveys)}</h2>
         </header>
       </div>
     );

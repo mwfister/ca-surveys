@@ -78,7 +78,7 @@ export function fetchSurveysFailure(error) {
 
 export function handleInitialData() {
   return (dispatch) => {
-    dispatch(FETCH_SURVEYS_REQUEST)
+    dispatch(fetchSurveyListRequest())
     fetch('/api/surveys')
       .then((response) => response.json())
       .then((surveys) => dispatch(fetchSurveyListSuccess(surveys)))

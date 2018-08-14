@@ -1,28 +1,16 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux'
 import { normalize } from 'normalizr'
+
 import surveysSchema from '../utils/schema'
 import { log } from '../utils/helpers'
-import { fetchSurveysSuccess } from '../actions/surveys'
+import { handleInitialData } from '../actions/surveys'
 
 class App extends Component {
+  componentDidMount() {
+  }
 
   render() {
-    fetch('/api/surveys')
-      .then((response) => response.json())
-      .then(log('API response in JSON'))
-      .then((results) => {
-        //const normalisedState = normalize(survey, surveysSchema)
-
-        console.group("State")
-        console.log("data", results );
-        console.log("spread res", ...results.survey_results);
-        //console.log("Normalised state", normalisedState);
-        console.groupEnd()
-        return results
-      })
-      .catch((e) => console.error("error", e))
-
     return (
       <div className="App">
         <header className="App-header">
@@ -33,4 +21,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  const { surveys } = state
+
+  return {
+    surveys,
+  }
+}
+
+export default connect(mapStateToProps)(App)

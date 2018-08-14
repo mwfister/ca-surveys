@@ -1,4 +1,6 @@
-import { nameToKey } from '../utils/helpers'
+import { normalize } from 'normalizr'
+
+import surveysSchema from '../utils/schema'
 import { nameToKey, createRespondents } from '../utils/helpers'
 
 export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'

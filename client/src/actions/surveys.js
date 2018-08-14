@@ -1,4 +1,5 @@
 import { nameToKey } from '../utils/helpers'
+import { nameToKey, createRespondents } from '../utils/helpers'
 
 export const FETCH_SURVEY_LIST_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
 export const FETCH_SURVEY_LIST_SUCCESS = 'FETCH_SURVEY_LIST_SUCCESS'
@@ -42,30 +43,18 @@ export function fetchSurveysRequest() {
 }
 
 export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
-  const createRespondents = () => {
-    Object.keys(responses).reduce((respondents, key) => {
-      const { respondent_id, question_id } = responses[key]
-      const responseList = respondents[respondent_id].responses
-      console.log("responses[key]", responses[key])
-
-      return {
-        ...respondents,
-        [respondent_id]: {
-          responses: responseList
-            ? responseList.concat(question_id)
-            : [question_id]
-        }
-      }
-    }, {})
-  }
-
-  return {
-    type: FETCH_SURVEYS_SUCCESS,
-    surveys,
-    themes,
-    questions,
-    responses,
-    respondents: createRespondents(),
+  try {
+    const respondents = createRespondents(responses)
+    return {
+      type: FETCH_SURVEYS_SUCCESS,
+      surveys,
+      themes,
+      questions,
+      responses,
+      respondents,
+    }
+  } catch (error) {
+    throw new Error(error)
   }
 }
 

@@ -81,7 +81,10 @@ export function handleInitialData() {
     dispatch(FETCH_SURVEYS_REQUEST)
     fetch('/api/surveys')
       .then((response) => response.json())
-      .then((surveys) => console.log(fetchSurveyListSuccess))
-      .catch((error) => console.error(error))
+      .then((surveys) => dispatch(fetchSurveyListSuccess(surveys)))
+      .catch((error) => {
+        dispatch(fetchSurveyListFailure(error))
+        return console.error("Gotta catch 'em all", error)
+      })
   }
 }

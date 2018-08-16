@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr'
 
-import surveysSchema from '../utils/schema'
+import surveySchema from '../utils/schema'
 import { nameToKey, createRespondents } from '../utils/helpers'
 
 export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
@@ -23,25 +23,20 @@ export function fetchSurveysFailure(error) {
 export function fetchSurveyListSuccess({ survey_results }) {
   return {
     type: FETCH_SURVEY_LIST_SUCCESS,
-    surveys: survey_results.reduce((surveys, survey) => {
-      return {
-        ...surveys,
-        [nameToKey(survey)]: {
-          ...survey
-        }
-      }
-    }, {}),
+    result: survey_results,
   }
 }
 
 export const FETCH_SURVEYS_SUCCESS = 'FETCH_SURVEYS_SUCCESS'
 
-export function fetchSurveysSuccess({ surveys, themes, questions, responses }) {
+export function fetchSurveysSuccess({ entities, result }) {
   try {
+    const { themes, questions, responses } = entities
     const respondents = createRespondents(responses)
+
     return {
       type: FETCH_SURVEYS_SUCCESS,
-      surveys,
+      result,
       themes,
       questions,
       responses,
@@ -70,10 +65,10 @@ export function loadPageData(route) {
     dispatch(fetchSurveysRequest())
     fetch(`/api/${route}`)
       .then((response) => response.json())
-      .then(({ survey_result_detail }) => (
-        normalize(survey_result_detail, surveysSchema).entities)
-      )
-      .then((surveys) => dispatch(fetchSurveysSuccess(surveys)))
+      .then((survey) => (
+        normalize(survey, surveySchema)
+      ))
+      .then((normSurvey) => dispatch(fetchSurveysSuccess(normSurvey)))
       .catch((error) => {
         dispatch(fetchSurveysFailure(error))
         return console.error("Gotta catch 'em all", error)

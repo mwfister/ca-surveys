@@ -6,7 +6,7 @@ import {
 } from '../actions/surveys'
 
 const initialState = {
-  surveys: {},
+  result: [],
   themes: {},
   questions: {},
   responses: {},
@@ -33,26 +33,33 @@ export default function surveys(state = initialState, action) {
       }
     }
     case FETCH_SURVEY_LIST_SUCCESS: {
-      const { surveys } = action
+      const { result } = action
 
       return {
         ...state,
-        surveys,
+        result,
         loading: false,
       }
     }
     case FETCH_SURVEYS_SUCCESS: {
       const {
-        surveys,
+        result,
         themes,
         questions,
         responses,
         respondents,
       } = action
 
+      const mergedResults = state.result.reduce((acc, survey, index) => {
+        if (survey.name === result[0].name) {
+          return acc.concat(...survey, result)
+        }
+        return acc.concat(survey)
+      }, [])
+
       return {
         ...state,
-        surveys,
+        result: mergedResults,
         themes: {
           ...state.themes,
           ...themes,

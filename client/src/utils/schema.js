@@ -20,10 +20,8 @@ const themeSchema = new schema.Entity('themes', {
 })
 const themeListSchema = new schema.Array(themeSchema)
 
-const survey = new schema.Entity('surveys', {
+const surveyListSchema = new schema.Array({
   themes: themeListSchema
-}, {
-  idAttribute: (value) => nameToKey(value)
 })
 
-export default survey
+export default surveyListSchema

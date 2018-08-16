@@ -53,10 +53,22 @@ export default function surveys(state = initialState, action) {
       return {
         ...state,
         surveys,
-        themes,
-        questions,
-        responses,
-        respondents,
+        themes: {
+          ...state.themes,
+          ...themes,
+        },
+        questions: {
+          ...state.questions,
+          ...questions,
+        },
+        responses: {
+          ...state.responses,
+          ...responses,
+        },
+        respondents: {
+          ...state.respondents,
+          ...respondents,
+        },
         loading: false,
       }
     }

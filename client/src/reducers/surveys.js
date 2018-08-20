@@ -50,16 +50,23 @@ export default function surveys(state = initialState, action) {
         respondents,
       } = action
 
-      const mergedResults = state.result.reduce((acc, survey, index) => {
-        if (survey.name === result[0].name) {
-          return acc.concat(...survey, result)
-        }
-        return acc.concat(survey)
-      }, [])
+      const mergeSurveys = () => {
+        let applied = false
+        let mergedSurveys = state.surveys.reduce((array, currentSurvey) => {
+          if (currentSurvey.name == survey.name) {
+            const merge = Object.assign({}, currentSurvey, survey)
+            applied = true
+            return array.concat(merge)
+          }
+          return array.concat(currentSurvey)
+        }, [])
+
+        return applied ? mergedSurveys : mergedSurveys.concat(survey)
+      }
 
       return {
         ...state,
-        result: mergedResults,
+        surveys: mergeSurveys(),
         themes: {
           ...state.themes,
           ...themes,

@@ -23,7 +23,7 @@ export function fetchSurveysFailure(error) {
 export function fetchSurveyListSuccess({ survey_results }) {
   return {
     type: FETCH_SURVEY_LIST_SUCCESS,
-    result: survey_results,
+    surveys: survey_results,
   }
 }
 
@@ -35,8 +35,8 @@ export function fetchSurveysSuccess({ entities, result }) {
     const respondents = createRespondents(responses)
 
     return {
-      type: FETCH_SURVEYS_SUCCESS,
-      result,
+      type: FETCH_SURVEY_SUCCESS,
+      survey: result[0],
       themes,
       questions,
       responses,

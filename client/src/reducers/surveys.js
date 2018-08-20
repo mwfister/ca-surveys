@@ -6,7 +6,7 @@ import {
 } from '../actions/surveys'
 
 const initialState = {
-  result: [],
+  surveys: [],
   themes: {},
   questions: {},
   responses: {},
@@ -33,17 +33,17 @@ export default function surveys(state = initialState, action) {
       }
     }
     case FETCH_SURVEY_LIST_SUCCESS: {
-      const { result } = action
+      const { surveys } = action
 
       return {
         ...state,
-        result,
+        surveys,
         loading: false,
       }
     }
     case FETCH_SURVEYS_SUCCESS: {
       const {
-        result,
+        survey,
         themes,
         questions,
         responses,

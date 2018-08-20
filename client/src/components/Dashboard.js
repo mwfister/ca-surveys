@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Card from './Card'
+
 class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="dashboard">
         <h1>Surveys</h1>
-        <p>{JSON.stringify(this.props.surveys)}</p>
+        {this.props.surveys.map((survey, index) => (
+          <Card
+            survey={survey}
+            surveyIndex={index}
+            key={survey.name}
+          />
+        ))}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-
-  return { }
-}
+const mapStateToProps = (state) => ({ surveys: state.surveys })
 
 export default connect(mapStateToProps)(Dashboard)

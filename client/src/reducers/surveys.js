@@ -53,7 +53,7 @@ export default function surveys(state = initialState, action) {
       const mergeSurveys = () => {
         let applied = false
         let mergedSurveys = state.surveys.reduce((array, currentSurvey) => {
-          if (currentSurvey.name == survey.name) {
+          if (currentSurvey.name === survey.name) {
             const merge = Object.assign({}, currentSurvey, survey)
             applied = true
             return array.concat(merge)

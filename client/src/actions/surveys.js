@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr'
 
 import surveySchema from '../utils/schema'
-import { nameToKey, createRespondents } from '../utils/helpers'
+import { createRespondents } from '../utils/helpers'
 
 export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
 export const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEY_LIST_FAILURE'
@@ -60,7 +60,7 @@ export function handleInitialData() {
   }
 }
 
-export function loadPageData(route) {
+export function fetchSurveyData(route) {
   return (dispatch) => {
     dispatch(fetchSurveysRequest())
     fetch(`/api/${route}`)

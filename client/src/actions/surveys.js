@@ -27,9 +27,9 @@ export function fetchSurveyListSuccess({ survey_results }) {
   }
 }
 
-export const FETCH_SURVEYS_SUCCESS = 'FETCH_SURVEYS_SUCCESS'
+export const FETCH_SURVEY_SUCCESS = 'FETCH_SURVEY_SUCCESS'
 
-export function fetchSurveysSuccess({ entities, result }) {
+export function fetchSurveySuccess({ entities, result }) {
   try {
     const { themes, questions, responses } = entities
     const respondents = createRespondents(responses)
@@ -43,7 +43,7 @@ export function fetchSurveysSuccess({ entities, result }) {
       respondents,
     }
   } catch (error) {
-    throw new Error(error)
+    return console.error("FETCH_SURVEY_SUCCESS Error\n", error)
   }
 }
 
@@ -68,7 +68,7 @@ export function loadPageData(route) {
       .then((survey) => (
         normalize(survey, surveySchema)
       ))
-      .then((normSurvey) => dispatch(fetchSurveysSuccess(normSurvey)))
+      .then((normSurvey) => dispatch(fetchSurveySuccess(normSurvey)))
       .catch((error) => {
         dispatch(fetchSurveysFailure(error))
         return console.error("Gotta catch 'em all", error)

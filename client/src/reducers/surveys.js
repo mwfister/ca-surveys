@@ -2,7 +2,7 @@ import {
   FETCH_SURVEYS_REQUEST,
   FETCH_SURVEYS_FAILURE,
   FETCH_SURVEY_LIST_SUCCESS,
-  FETCH_SURVEYS_SUCCESS,
+  FETCH_SURVEY_SUCCESS,
 } from '../actions/surveys'
 
 const initialState = {
@@ -41,7 +41,7 @@ export default function surveys(state = initialState, action) {
         loading: false,
       }
     }
-    case FETCH_SURVEYS_SUCCESS: {
+    case FETCH_SURVEY_SUCCESS: {
       const {
         survey,
         themes,

@@ -49,6 +49,15 @@ h2, p {
   font-size: 2.5em;
 }
 
+.backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-left: 3px solid #c73c25aa;
+  box-shadow: -4px 0 2px -2px #c73c25aa;
+}
 
 @media (max-width: 550px) {
   .card {

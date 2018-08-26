@@ -44,7 +44,7 @@ by simply using the server to also serve static files
 
 4. View the site at localhost:3000
 
-
+## Redux DevTools
 **For Bonus Points**
 Install the Redux DevTools Extension
 >[Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)

@@ -8,12 +8,11 @@ A React/Redux project that pulls in survey data from an API and renders it acros
 Whilst using Redux is initially unnecessary - the survey data is a central theme to the app and Redux would allow future components to seamlessly manipulate and display the state *(add, edit, remove, filter etc.)*.
 
 I messed around with using the mock API to also serve the client app:
-**In Development**
 
+**In Development**
 by using webpack-dev-server to proxy the API requests
 
 **In Production**
-
 by simply using the server to also serve static files
 
 ## To run the app locally (Node/npm)

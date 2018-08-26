@@ -19,7 +19,7 @@ by simply using the API server to also serve static client files
 
 0. Clone/DL the repository
 
-*From the root directory*
+**From the root directory**
 1. Install the dependencies for the server AND client
 
 `npm run setup`

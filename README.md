@@ -5,15 +5,15 @@ Rendering Surveys - with React & Redux
 **WIP**
 
 A React/Redux project that pulls in survey data from an API and renders it across the app.
-Whilst using Redux is initially unnecessary - the survey data is a central theme to the app and Redux would allow future components to seamlessly manipulate and display the state *(add, edit, remove, filter etc.)*.
+The survey data is a central theme to the app - it will be reused throughout the project, so building Redux into the app early on allows future components to seamlessly manipulate and display that state (add, edit, remove etc).
 
-I messed around with using the mock API to also serve the client app:
+I experimented with using a mock API that also serves the client app:
 
 **In Development**
 by using webpack-dev-server to proxy the API requests
 
 **In Production**
-by simply using the server to also serve static files
+by simply using the API server to also serve static client files
 
 ## To run the app locally (Node/npm)
 

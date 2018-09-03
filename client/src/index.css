@@ -59,6 +59,22 @@ h2, p {
   box-shadow: -4px 0 2px -2px #c73c25aa;
 }
 
+.dropdown-bar {
+  position: relative;
+}
+.sliding-panel-wrapper {
+  transition: height 1s;
+  overflow: hidden;
+}
+.sliding-panel {
+  position: relative;
+  /* top: -100%; */
+  transition: all 1s ease;
+}
+.expanded {
+  /* top: 0; */
+}
+
 @media (max-width: 550px) {
   .card {
     justify-content: center;

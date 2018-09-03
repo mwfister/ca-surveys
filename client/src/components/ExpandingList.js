@@ -13,6 +13,8 @@ export default class ExpandingList extends Component {
     dynPosition: '0px'
   }
 
+  componentDidMount() {
+    this.setState({ dynPosition: -this.listNode.current.clientHeight + 'px' })
   }
 
   handleClick = () => {

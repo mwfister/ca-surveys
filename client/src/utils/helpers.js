@@ -39,3 +39,17 @@ export function createRespondents(responses) {
     }
   }, {})
 }
+
+export function mergeSurveys(originalSurveys, newSurvey) {
+  let applied = false
+  let mergedSurveys = originalSurveys.reduce((array, currentSurvey) => {
+    if (currentSurvey.name === newSurvey.name) {
+      const merge = Object.assign({}, currentSurvey, newSurvey)
+      applied = true
+      return array.concat(merge)
+    }
+    return array.concat(currentSurvey)
+  }, [])
+
+  return applied ? mergedSurveys : mergedSurveys.concat(newSurvey)
+}

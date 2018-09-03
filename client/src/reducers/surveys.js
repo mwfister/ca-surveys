@@ -4,6 +4,7 @@ import {
   FETCH_SURVEY_LIST_SUCCESS,
   FETCH_SURVEY_SUCCESS,
 } from '../actions/surveys'
+import { mergeSurveys } from '../utils/helpers'
 
 const initialState = {
   surveys: [],
@@ -50,23 +51,9 @@ export default function surveys(state = initialState, action) {
         respondents,
       } = action
 
-      const mergeSurveys = () => {
-        let applied = false
-        let mergedSurveys = state.surveys.reduce((array, currentSurvey) => {
-          if (currentSurvey.name === survey.name) {
-            const merge = Object.assign({}, currentSurvey, survey)
-            applied = true
-            return array.concat(merge)
-          }
-          return array.concat(currentSurvey)
-        }, [])
-
-        return applied ? mergedSurveys : mergedSurveys.concat(survey)
-      }
-
       return {
         ...state,
-        surveys: mergeSurveys(),
+        surveys: mergeSurveys(state.surveys, survey),
         themes: {
           ...state.themes,
           ...themes,

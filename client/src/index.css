@@ -66,13 +66,12 @@ h2, p {
   transition: height 1s;
   overflow: hidden;
 }
+.sliding-panel-wrapper * {
+  margin: 0;
+}
 .sliding-panel {
   position: relative;
-  /* top: -100%; */
   transition: all 1s ease;
-}
-.expanded {
-  /* top: 0; */
 }
 
 @media (max-width: 550px) {

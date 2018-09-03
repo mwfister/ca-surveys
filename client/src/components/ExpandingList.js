@@ -5,12 +5,14 @@ export default class ExpandingList extends Component {
   constructor(props) {
     super(props)
     this.listNode = React.createRef()
-    this.dynHeight = '0px'
   }
 
   state = {
     toggled: false,
-    dynHeight: '0px'
+    dynHeight: '0px',
+    dynPosition: '0px'
+  }
+
   }
 
   handleClick = () => {
@@ -18,14 +20,14 @@ export default class ExpandingList extends Component {
       toggled: !prevState.toggled,
       dynHeight: !prevState.toggled
         ? `${this.listNode.current.clientHeight}` + 'px'
+        : '0px',
+      dynPosition: prevState.toggled
+        ? `-${this.listNode.current.clientHeight}` + 'px'
         : '0px'
     }))
   }
 
-  // TODO: Fix overflow property moving child elements.
   render() {
-    console.log("NODE", this.listNode);
-    console.log("HEIGHT", this.state.dynHeight);
     return (
       <div className="expanding-list" onClick={this.handleClick}>
         <div className="dropdown-bar">
@@ -35,8 +37,9 @@ export default class ExpandingList extends Component {
           height: this.state.dynHeight
         }}>
           <div
-            className={classnames("sliding-panel", { expanded: this.state.toggled })}
+            className={"sliding-panel"}
             ref={this.listNode}
+            style={{ top: this.state.dynPosition }}
           >
             {this.props.children}
           </div>

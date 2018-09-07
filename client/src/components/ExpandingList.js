@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
+import Panel from './Panel'
+
 export default class ExpandingList extends Component {
   constructor(props) {
     super(props)
@@ -43,7 +45,10 @@ export default class ExpandingList extends Component {
             ref={this.listNode}
             style={{ top: this.state.dynPosition }}
           >
-            {this.props.children}
+            <Panel>
+              {this.props.children}
+            </Panel>
+
           </div>
         </div>
         <h1>CONTENT THAT SHOULD MOVE</h1>

@@ -60,18 +60,21 @@ h2, p {
 }
 
 .dropdown-bar {
-  position: relative;
+  overflow: auto;
 }
 .sliding-panel-wrapper {
-  transition: height 1s;
+  position: relative;
   overflow: hidden;
-}
-.sliding-panel-wrapper * {
-  margin: 0;
+  transition: height 1s;
 }
 .sliding-panel {
-  position: relative;
+  position: absolute;
   transition: all 1s ease;
+}
+.panel {
+  height: 100%;
+  padding: 5px 10px;
+  overflow: auto;
 }
 
 @media (max-width: 550px) {

@@ -13,8 +13,12 @@ class Survey extends Component {
         {survey.themes
           ? (
             <ExpandingList heading={survey.themes[0]}>
-              <h1>So here we stand</h1>
-              <p>Imma Child</p>
+              <h1>Child Content</h1>
+              <div>
+                <span>
+                  <h1>Nested Child w/ margin</h1>
+                </span>
+              </div>
             </ExpandingList>
           )
           : <p>Loading</p>

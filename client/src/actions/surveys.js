@@ -3,8 +3,8 @@ import { normalize } from 'normalizr'
 import surveySchema from '../utils/schema'
 import { createRespondents } from '../utils/helpers'
 
-export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEY_LIST_REQUEST'
-export const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEY_LIST_FAILURE'
+export const FETCH_SURVEYS_REQUEST = 'FETCH_SURVEYS_REQUEST'
+export const FETCH_SURVEYS_FAILURE = 'FETCH_SURVEYS_FAILURE'
 export const FETCH_SURVEY_LIST_SUCCESS = 'FETCH_SURVEY_LIST_SUCCESS'
 
 export function fetchSurveysRequest() {
